@@ -71,7 +71,7 @@ export default function GallerySection({ project }: { project: Project }) {
     <section
       id={project.slug}
       data-section
-      className="relative h-screen w-screen snap-start overflow-hidden bg-black"
+      className="relative h-screen w-screen snap-start overflow-hidden bg-background"
     >
       <div
         className={`absolute inset-0 transition-opacity duration-500 ${
@@ -135,11 +135,11 @@ export default function GallerySection({ project }: { project: Project }) {
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute top-6 right-6 text-sm text-white/70 hover:text-white"
+          className="absolute top-6 right-6 text-sm text-foreground/70 hover:text-foreground"
         >
           Fermer ✕
         </button>
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs text-white/60">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs text-foreground/60">
           {index + 1} / {project.photos.length}
         </div>
       </div>

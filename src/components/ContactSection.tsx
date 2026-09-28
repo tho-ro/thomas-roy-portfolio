@@ -3,21 +3,21 @@ export default function ContactSection() {
     <section
       id="contact"
       data-section
-      className="relative flex h-screen w-screen snap-start flex-col items-center justify-center bg-black px-6 text-white"
+      className="relative flex h-screen w-screen snap-start flex-col items-center justify-center bg-background px-6 text-foreground"
     >
       <div className="max-w-md">
         <h2 className="text-2xl font-medium tracking-tight">Contact</h2>
-        <p className="mt-4 text-white/70">
+        <p className="mt-4 text-foreground/70">
           Pour toute demande de collaboration, tirage ou publication,
           n&apos;hésitez pas à me contacter.
         </p>
         <dl className="mt-8 space-y-4 text-sm">
           <div>
-            <dt className="text-white/50">Email</dt>
+            <dt className="text-foreground/50">Email</dt>
             <dd>
               <a
                 href="mailto:contact@thomas-roy.com"
-                className="hover:text-white/70"
+                className="hover:text-foreground/70"
               >
                 contact@thomas-roy.com
               </a>
@@ -25,7 +25,7 @@ export default function ContactSection() {
           </div>
         </dl>
       </div>
-      <p className="absolute bottom-6 text-xs text-white/40">
+      <p className="absolute bottom-6 text-xs text-foreground/40">
         © {new Date().getFullYear()} Thomas Roy. Tous droits réservés.
       </p>
     </section>

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useGalleryVisibility } from "@/components/GalleryVisibility";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 const links = [
   { id: "angola", label: "Travaux" },
@@ -39,18 +40,22 @@ export default function Nav() {
         >
           Thomas Roy
         </button>
-        <nav className="flex gap-6 text-sm tracking-wide">
-          {links.map((link) => (
-            <button
-              key={link.id}
-              type="button"
-              onClick={() => scrollToId(link.id)}
-              className="text-white/70 transition-colors hover:text-white"
-            >
-              {link.label}
-            </button>
-          ))}
-        </nav>
+        <div className="flex items-center gap-6">
+          <nav className="flex gap-6 text-sm tracking-wide">
+            {links.map((link) => (
+              <button
+                key={link.id}
+                type="button"
+                onClick={() => scrollToId(link.id)}
+                className="text-white/70 transition-colors hover:text-white"
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
+          <div className="h-4 w-px bg-white/20" />
+          <ThemeSwitcher />
+        </div>
       </div>
     </header>
   );

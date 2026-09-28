@@ -5,10 +5,10 @@ export default function AboutSection() {
     <section
       id="a-propos"
       data-section
-      className="flex h-screen w-screen snap-start items-center bg-black px-6 py-24 text-white sm:px-16"
+      className="flex h-screen w-screen snap-start items-center bg-background px-6 py-24 text-foreground sm:px-16"
     >
       <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-12 sm:grid-cols-2">
-        <div className="relative aspect-[4/5] overflow-hidden bg-white/5">
+        <div className="relative aspect-[4/5] overflow-hidden bg-foreground/5">
           <Image
             src="https://picsum.photos/seed/portrait/1200/1500"
             alt="Portrait de Thomas Roy"
@@ -20,7 +20,7 @@ export default function AboutSection() {
 
         <div className="max-w-md">
           <h2 className="text-2xl font-medium tracking-tight">À propos</h2>
-          <div className="mt-6 space-y-4 text-white/70">
+          <div className="mt-6 space-y-4 text-foreground/70">
             <p>
               Thomas Roy est un photographe documentaire et artistique. Son
               travail explore les territoires, leurs habitants et leurs
