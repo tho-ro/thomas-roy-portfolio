@@ -50,10 +50,16 @@ export default function GallerySection({ project }: { project: Project }) {
     // there can't stop the page's vertical scroll. A native listener with
     // passive: false is required to redirect wheel input to horizontal scroll.
     function onWheel(e: WheelEvent) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        // Already a horizontal gesture (trackpad swipe) - let the browser
+        // handle it natively. Intercepting it here and replaying it via
+        // scrollLeft fights the browser's own momentum/snap handling; in
+        // WebKit this made short swipes silently snap back to the start.
+        return;
+      }
       e.preventDefault();
       e.stopPropagation();
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      el!.scrollLeft += delta;
+      el!.scrollLeft += e.deltaY;
     }
 
     el.addEventListener("wheel", onWheel, { passive: false });
