@@ -26,12 +26,12 @@ export default function Nav() {
 
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 top-0 z-50 backdrop-blur-sm transition-[opacity,background-color] duration-300 ${
+      className={`pointer-events-none fixed inset-x-0 top-0 z-50 transition-[opacity,background-color] duration-300 ${
         isAnyOpen ? "opacity-0" : "opacity-100"
       } ${
         isOverPhoto
-          ? "bg-gradient-to-b from-black/70 from-40% to-transparent"
-          : "bg-gradient-to-b from-background/80 from-40% to-transparent"
+          ? "bg-gradient-to-b from-black/40 to-transparent"
+          : "bg-gradient-to-b from-background/50 to-transparent"
       }`}
     >
       <div
