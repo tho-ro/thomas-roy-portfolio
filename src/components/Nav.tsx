@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useGalleryVisibility } from "@/components/GalleryVisibility";
+import { useNavAppearance } from "@/components/NavAppearance";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 const links = [
@@ -13,6 +14,7 @@ const links = [
 export default function Nav() {
   const router = useRouter();
   const { isAnyOpen } = useGalleryVisibility();
+  const { isOverPhoto } = useNavAppearance();
 
   function scrollToId(id: string) {
     if (window.location.pathname !== "/") {
@@ -24,8 +26,12 @@ export default function Nav() {
 
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 top-0 z-50 bg-gradient-to-b from-black/70 via-black/20 to-transparent transition-opacity duration-300 ${
+      className={`pointer-events-none fixed inset-x-0 top-0 z-50 backdrop-blur-sm transition-[opacity,background-color] duration-300 ${
         isAnyOpen ? "opacity-0" : "opacity-100"
+      } ${
+        isOverPhoto
+          ? "bg-gradient-to-b from-black/70 from-40% to-transparent"
+          : "bg-gradient-to-b from-background/80 from-40% to-transparent"
       }`}
     >
       <div
@@ -36,7 +42,9 @@ export default function Nav() {
         <button
           type="button"
           onClick={() => scrollToId("intro")}
-          className="text-sm font-medium tracking-widest text-white uppercase"
+          className={`text-sm font-medium tracking-widest uppercase transition-colors ${
+            isOverPhoto ? "text-white" : "text-foreground"
+          }`}
         >
           Thomas Roy
         </button>
@@ -47,14 +55,20 @@ export default function Nav() {
                 key={link.id}
                 type="button"
                 onClick={() => scrollToId(link.id)}
-                className="text-white/70 transition-colors hover:text-white"
+                className={`transition-colors ${
+                  isOverPhoto
+                    ? "text-white/70 hover:text-white"
+                    : "text-foreground/70 hover:text-foreground"
+                }`}
               >
                 {link.label}
               </button>
             ))}
           </nav>
-          <div className="h-4 w-px bg-white/20" />
-          <ThemeSwitcher />
+          <div
+            className={`h-4 w-px ${isOverPhoto ? "bg-white/20" : "bg-foreground/20"}`}
+          />
+          <ThemeSwitcher onPhoto={isOverPhoto} />
         </div>
       </div>
     </header>

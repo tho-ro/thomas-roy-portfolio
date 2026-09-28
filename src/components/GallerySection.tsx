@@ -4,12 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Project } from "@/lib/projects";
 import { useGalleryVisibility } from "@/components/GalleryVisibility";
+import { useNavAppearance } from "@/components/NavAppearance";
 
 export default function GallerySection({ project }: { project: Project }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const { setGalleryOpen } = useGalleryVisibility();
+  const { setOverPhoto } = useNavAppearance();
 
   useEffect(() => {
     if (open) {
@@ -18,6 +21,26 @@ export default function GallerySection({ project }: { project: Project }) {
     setGalleryOpen(project.slug, open);
     return () => setGalleryOpen(project.slug, false);
   }, [open, project.slug, setGalleryOpen]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    // The nav should switch to a dark scrim + white text whenever the cover
+    // photo behind it is visible, regardless of the light/dark site theme,
+    // since a photo's brightness has nothing to do with the chosen theme.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setOverPhoto(project.slug, entry.isIntersecting && !open);
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      setOverPhoto(project.slug, false);
+    };
+  }, [open, project.slug, setOverPhoto]);
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -69,6 +92,7 @@ export default function GallerySection({ project }: { project: Project }) {
 
   return (
     <section
+      ref={sectionRef}
       id={project.slug}
       data-section
       className="relative h-screen w-screen snap-start overflow-hidden bg-background"

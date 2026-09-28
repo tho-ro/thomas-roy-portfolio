@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Nav from "@/components/Nav";
 import { GalleryVisibilityProvider } from "@/components/GalleryVisibility";
+import { NavAppearanceProvider } from "@/components/NavAppearance";
 import { ThemeProvider, THEME_INIT_SCRIPT } from "@/components/ThemeProvider";
 import "./globals.css";
 
@@ -38,8 +39,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="h-full overflow-hidden bg-background text-foreground">
         <ThemeProvider>
           <GalleryVisibilityProvider>
-            <Nav />
-            {children}
+            <NavAppearanceProvider>
+              <Nav />
+              {children}
+            </NavAppearanceProvider>
           </GalleryVisibilityProvider>
         </ThemeProvider>
       </body>
