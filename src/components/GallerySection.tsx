@@ -131,7 +131,7 @@ export default function GallerySection({ project }: { project: Project }) {
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute top-6 right-6 text-sm text-white/70 hover:text-white"
+          className="absolute top-20 right-6 text-sm text-white/70 hover:text-white sm:top-24"
         >
           Fermer ✕
         </button>
