@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useGalleryVisibility } from "@/components/GalleryVisibility";
 
 const links = [
   { id: "angola", label: "Travaux" },
@@ -10,6 +11,7 @@ const links = [
 
 export default function Nav() {
   const router = useRouter();
+  const { isAnyOpen } = useGalleryVisibility();
 
   function scrollToId(id: string) {
     if (window.location.pathname !== "/") {
@@ -20,8 +22,16 @@ export default function Nav() {
   }
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-gradient-to-b from-black/70 via-black/20 to-transparent">
-      <div className="pointer-events-auto mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+    <header
+      className={`pointer-events-none fixed inset-x-0 top-0 z-50 bg-gradient-to-b from-black/70 via-black/20 to-transparent transition-opacity duration-300 ${
+        isAnyOpen ? "opacity-0" : "opacity-100"
+      }`}
+    >
+      <div
+        className={`mx-auto flex max-w-6xl items-center justify-between px-6 py-6 ${
+          isAnyOpen ? "pointer-events-none" : "pointer-events-auto"
+        }`}
+      >
         <button
           type="button"
           onClick={() => scrollToId("intro")}

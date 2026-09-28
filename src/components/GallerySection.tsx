@@ -3,17 +3,21 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Project } from "@/lib/projects";
+import { useGalleryVisibility } from "@/components/GalleryVisibility";
 
 export default function GallerySection({ project }: { project: Project }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const { setGalleryOpen } = useGalleryVisibility();
 
   useEffect(() => {
     if (open) {
       scrollerRef.current?.focus();
     }
-  }, [open]);
+    setGalleryOpen(project.slug, open);
+    return () => setGalleryOpen(project.slug, false);
+  }, [open, project.slug, setGalleryOpen]);
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -131,7 +135,7 @@ export default function GallerySection({ project }: { project: Project }) {
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute top-20 right-6 text-sm text-white/70 hover:text-white sm:top-24"
+          className="absolute top-6 right-6 text-sm text-white/70 hover:text-white"
         >
           Fermer ✕
         </button>
