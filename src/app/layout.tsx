@@ -15,9 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://thomas-roy.com"),
   title: "Thomas Roy — Photographe",
   description:
     "Portfolio de Thomas Roy, photographe documentaire et artistique. Reportages, photographie urbaine et paysages.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

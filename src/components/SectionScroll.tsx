@@ -6,8 +6,10 @@ const NAV_KEYS = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 
 export default function SectionScroll({
   children,
+  initialId,
 }: {
   children: React.ReactNode;
+  initialId?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -15,9 +17,13 @@ export default function SectionScroll({
     const container = containerRef.current;
     if (!container) return;
 
-    if (window.location.hash) {
-      const target = document.getElementById(window.location.hash.slice(1));
-      target?.scrollIntoView({ behavior: "auto", block: "start" });
+    const targetId = window.location.hash
+      ? window.location.hash.slice(1)
+      : initialId;
+    if (targetId) {
+      document
+        .getElementById(targetId)
+        ?.scrollIntoView({ behavior: "auto", block: "start" });
     }
 
     function onKeyDown(e: KeyboardEvent) {
@@ -53,7 +59,7 @@ export default function SectionScroll({
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+  }, [initialId]);
 
   return (
     <div
