@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTheme, type ThemeMode } from "@/components/ThemeProvider";
 
-const options: { mode: ThemeMode; label: string }[] = [
+export const themeOptions: { mode: ThemeMode; label: string }[] = [
   { mode: "light", label: "Clair" },
   { mode: "dark", label: "Sombre" },
   { mode: "auto", label: "Auto" },
@@ -88,7 +88,7 @@ export default function ThemeSwitcher({ onPhoto }: { onPhoto: boolean }) {
             onPhoto ? "bg-black/80" : "bg-background/95"
           }`}
         >
-          {options.map((option) => {
+          {themeOptions.map((option) => {
             const active = mode === option.mode;
             const activeClass = onPhoto ? "text-white" : "text-foreground";
             const inactiveClass = onPhoto
