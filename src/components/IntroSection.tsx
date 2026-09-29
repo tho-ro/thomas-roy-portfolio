@@ -5,10 +5,7 @@ export default function IntroSection() {
       data-section
       className="relative flex h-screen w-screen snap-start flex-col items-center justify-center bg-background px-6 text-center text-foreground"
     >
-      <p className="text-xs tracking-[0.3em] text-foreground/50 uppercase">
-        Portfolio
-      </p>
-      <h1 className="mt-4 text-4xl font-medium tracking-tight sm:text-6xl">
+      <h1 className="text-4xl font-medium tracking-tight sm:text-6xl">
         Thomas Roy
       </h1>
       <p className="mt-4 max-w-md text-foreground/70">

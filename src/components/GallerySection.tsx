@@ -118,9 +118,6 @@ export default function GallerySection({ project }: { project: Project }) {
         />
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 flex flex-col items-start justify-end gap-4 p-8 text-white sm:p-16">
-          <span className="text-xs tracking-[0.3em] text-white/60 uppercase">
-            {project.location} — {project.year}
-          </span>
           <h2 className="text-3xl font-medium tracking-tight sm:text-5xl">
             {project.title}
           </h2>
