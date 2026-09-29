@@ -10,7 +10,7 @@ import { projects } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "À propos — Thomas Roy",
   description:
-    "Thomas Roy est un photographe documentaire et artistique. Son travail explore les territoires, leurs habitants et leurs transformations.",
+    "Né en 1974 à La Rochelle. Photographe documentaire, auteur de Fragments d'Angola (Actes Sud, 2006) et d'un travail au long cours sur les paysages urbains du monde entier.",
   alternates: {
     canonical: "/a-propos",
   },

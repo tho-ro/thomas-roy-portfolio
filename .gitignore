@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw photo import (all sizes from the WordPress export) - see public/photos
+# for the curated, web-ready copies actually used by the site
+/import
