@@ -6,6 +6,38 @@ import type { Project } from "@/lib/projects";
 import { useGalleryVisibility } from "@/components/GalleryVisibility";
 import { useNavAppearance } from "@/components/NavAppearance";
 
+function ChevronLeftIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-6 w-6"
+    >
+      <path d="M15 5l-7 7 7 7" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-6 w-6"
+    >
+      <path d="M9 5l7 7-7 7" />
+    </svg>
+  );
+}
+
 export default function GallerySection({ project }: { project: Project }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
@@ -166,6 +198,26 @@ export default function GallerySection({ project }: { project: Project }) {
         >
           Fermer ✕
         </button>
+
+        <button
+          type="button"
+          onClick={() => scrollToIndex(index - 1)}
+          disabled={index === 0}
+          aria-label="Image précédente"
+          className="absolute top-1/2 left-6 -translate-y-1/2 text-foreground/70 transition-[opacity,color] hover:text-foreground disabled:opacity-0"
+        >
+          <ChevronLeftIcon />
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollToIndex(index + 1)}
+          disabled={index === project.photos.length - 1}
+          aria-label="Image suivante"
+          className="absolute top-1/2 right-6 -translate-y-1/2 text-foreground/70 transition-[opacity,color] hover:text-foreground disabled:opacity-0"
+        >
+          <ChevronRightIcon />
+        </button>
+
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs text-foreground/60">
           {index + 1} / {project.photos.length}
         </div>
