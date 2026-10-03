@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_ME";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgavgvdk";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
