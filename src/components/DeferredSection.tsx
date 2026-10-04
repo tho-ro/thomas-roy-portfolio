@@ -31,7 +31,7 @@ export default function DeferredSection({
       <div
         id={id}
         data-section
-        className="h-screen w-screen shrink-0 snap-start bg-background"
+        className="h-dvh w-screen shrink-0 snap-start bg-background"
       />
     );
   }

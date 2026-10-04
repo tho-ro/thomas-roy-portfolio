@@ -1,17 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useGalleryVisibility } from "@/components/GalleryVisibility";
 import { useNavAppearance } from "@/components/NavAppearance";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import MobileMenu from "@/components/MobileMenu";
-
-const links = [
-  { id: "angola", label: "Travaux" },
-  { id: "a-propos", label: "À propos" },
-  { id: "contact", label: "Contact" },
-];
+import { INSTAGRAM_URL, links } from "@/lib/nav-links";
 
 function HamburgerIcon() {
   return (
@@ -24,6 +20,24 @@ function HamburgerIcon() {
       className="h-5 w-5"
     >
       <path d="M3 6h18M3 12h18M3 18h18" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-4 w-4"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17" cy="7" r="0.6" fill="currentColor" stroke="none" />
     </svg>
   );
 }
@@ -46,6 +60,10 @@ export default function Nav() {
     setMobileOpen(false);
     scrollToId(id);
   }
+
+  const linkColor = isOverPhoto
+    ? "text-white/70 hover:text-white"
+    : "text-foreground/70 hover:text-foreground";
 
   return (
     <>
@@ -75,24 +93,39 @@ export default function Nav() {
 
           <div className="hidden items-center gap-6 sm:flex">
             <nav className="flex gap-6 text-sm tracking-wide">
-              {links.map((link) => (
-                <button
-                  key={link.id}
-                  type="button"
-                  onClick={() => scrollToId(link.id)}
-                  className={`transition-colors ${
-                    isOverPhoto
-                      ? "text-white/70 hover:text-white"
-                      : "text-foreground/70 hover:text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </button>
-              ))}
+              {links.map((link) =>
+                link.href ? (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`transition-colors ${linkColor}`}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.id}
+                    type="button"
+                    onClick={() => scrollToId(link.id!)}
+                    className={`transition-colors ${linkColor}`}
+                  >
+                    {link.label}
+                  </button>
+                ),
+              )}
             </nav>
             <div
               className={`h-4 w-px ${isOverPhoto ? "bg-white/20" : "bg-foreground/20"}`}
             />
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className={`flex items-center transition-colors ${linkColor}`}
+            >
+              <InstagramIcon />
+            </a>
             <ThemeSwitcher onPhoto={isOverPhoto} />
           </div>
 

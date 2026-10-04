@@ -133,7 +133,7 @@ export default function GallerySection({ project }: { project: Project }) {
       ref={sectionRef}
       id={project.slug}
       data-section
-      className="relative h-screen w-screen snap-start overflow-hidden bg-background"
+      className="relative h-dvh w-screen snap-start overflow-hidden bg-background"
     >
       <div
         className={`absolute inset-0 transition-opacity duration-500 ${
@@ -149,7 +149,7 @@ export default function GallerySection({ project }: { project: Project }) {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/30" />
-        <div className="absolute inset-0 flex flex-col items-start justify-end gap-4 p-8 text-white sm:p-16">
+        <div className="absolute inset-0 flex flex-col items-start justify-end gap-4 p-8 pb-10 text-white sm:p-16">
           <h2 className="text-3xl font-medium tracking-tight sm:text-5xl">
             {project.title}
           </h2>

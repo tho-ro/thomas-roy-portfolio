@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AteliersPage() {
   return (
-    <div className="h-screen overflow-y-auto bg-background text-foreground">
+    <div className="h-dvh overflow-y-auto bg-background text-foreground">
       <div className="mx-auto max-w-2xl px-6 pt-32 pb-24 sm:px-16">
         <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">
           Ateliers d&apos;initiation au labo noir et blanc

@@ -3,7 +3,7 @@ export default function ContactSection() {
     <section
       id="contact"
       data-section
-      className="relative flex h-screen w-screen snap-start flex-col items-center justify-center bg-background px-6 text-foreground"
+      className="relative flex h-dvh w-screen snap-start flex-col items-center justify-center bg-background px-6 text-foreground"
     >
       <div className="max-w-md">
         <h2 className="text-2xl font-medium tracking-tight">Contact</h2>

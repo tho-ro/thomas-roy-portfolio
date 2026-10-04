@@ -3,7 +3,7 @@ export default function IntroSection() {
     <section
       id="intro"
       data-section
-      className="relative flex h-screen w-screen snap-start flex-col items-center justify-center bg-background px-6 text-center text-foreground"
+      className="relative flex h-dvh w-screen snap-start flex-col items-center justify-center bg-background px-6 text-center text-foreground"
     >
       <h1 className="text-4xl font-medium tracking-tight sm:text-6xl">
         Thomas Roy

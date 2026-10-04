@@ -64,7 +64,7 @@ export default function SectionScroll({
   return (
     <div
       ref={containerRef}
-      className="h-screen w-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth"
+      className="h-dvh w-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth"
     >
       {children}
     </div>

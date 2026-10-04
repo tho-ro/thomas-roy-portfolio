@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { useTheme } from "@/components/ThemeProvider";
 import { themeOptions } from "@/components/ThemeSwitcher";
+import { INSTAGRAM_URL, type NavLink } from "@/lib/nav-links";
 
 export default function MobileMenu({
   open,
@@ -12,7 +14,7 @@ export default function MobileMenu({
 }: {
   open: boolean;
   onClose: () => void;
-  links: { id: string; label: string }[];
+  links: NavLink[];
   onNavigate: (id: string) => void;
 }) {
   const { mode, setMode } = useTheme();
@@ -45,16 +47,35 @@ export default function MobileMenu({
       </button>
 
       <nav className="flex flex-col items-center gap-6">
-        {links.map((link) => (
-          <button
-            key={link.id}
-            type="button"
-            onClick={() => onNavigate(link.id)}
-            className="text-2xl font-medium tracking-wide uppercase text-foreground/80 transition-colors hover:text-foreground"
-          >
-            {link.label}
-          </button>
-        ))}
+        {links.map((link) =>
+          link.href ? (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={onClose}
+              className="text-2xl font-medium tracking-wide uppercase text-foreground/80 transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </Link>
+          ) : (
+            <button
+              key={link.id}
+              type="button"
+              onClick={() => onNavigate(link.id!)}
+              className="text-2xl font-medium tracking-wide uppercase text-foreground/80 transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </button>
+          ),
+        )}
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-2xl font-medium tracking-wide uppercase text-foreground/80 transition-colors hover:text-foreground"
+        >
+          Instagram
+        </a>
       </nav>
 
       <div className="flex items-center gap-6 text-xs tracking-wide uppercase">
